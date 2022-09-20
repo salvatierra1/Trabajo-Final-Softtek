@@ -1,8 +1,6 @@
 package com.sofftektp.trabajofinal.seeder;
 
 import com.sofftektp.trabajofinal.auth.model.Role;
-import com.sofftektp.trabajofinal.auth.model.UserEntity;
-import com.sofftektp.trabajofinal.model.Manager;
 import com.sofftektp.trabajofinal.repository.ManagerRepository;
 import com.sofftektp.trabajofinal.repository.RoleRepository;
 import com.sofftektp.trabajofinal.repository.UserRepository;
@@ -42,25 +40,12 @@ public class UserSeeder implements CommandLineRunner {
             role = new Role(
                     "ROLE_MANAGER");
             roleRepository.save(role);
+            role = new Role(
+                    "ROLE_SELLER");
+            roleRepository.save(role);
         }
-        createUser("Victor","admin@mail.com", "12345678", role);
-        createUserManager(userRepository.findByUsername("admin@mail.com"));
-    }
-    private void createUser(String name, String username, String password, Role role) {
-        UserEntity user = new UserEntity(
-                name,
-                username,
-                passwordEncoder.encode(password),
-                role
-        );
-        userRepository.save(user);
     }
 
-    private void createUserManager(UserEntity user) {
-        Manager manager = new Manager(null,
-                user
-        );
-        managerRepository.save(manager);
-    }
+
 
 }

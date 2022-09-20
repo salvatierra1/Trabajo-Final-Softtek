@@ -1,12 +1,9 @@
 package com.sofftektp.trabajofinal.repository;
 
-
-import com.sofftektp.trabajofinal.auth.model.Role;
+import com.sofftektp.trabajofinal.model.ProductBasic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
-
-    Role findByName(String roleName);
+public interface ProductBasicRepository extends JpaRepository<ProductBasic, Long> {
 }

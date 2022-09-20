@@ -17,6 +17,7 @@ public class Role {
     @NotNull(message = "The name cannot be empty")
     private String name;
 
+
     public Long getId() {
         return id;
     }

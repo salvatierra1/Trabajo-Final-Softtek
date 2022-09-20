@@ -14,4 +14,5 @@ public class ManagerMapper {
         managerDTO.setUsername(manager.getUserEntity().getUsername());
         return managerDTO;
     }
+
 }

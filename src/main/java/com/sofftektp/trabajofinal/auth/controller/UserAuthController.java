@@ -2,6 +2,7 @@ package com.sofftektp.trabajofinal.auth.controller;
 
 import com.sofftektp.trabajofinal.auth.dto.AuthenticationRequest;
 import com.sofftektp.trabajofinal.auth.dto.AuthenticationResponse;
+import com.sofftektp.trabajofinal.auth.model.RoleForm;
 import com.sofftektp.trabajofinal.auth.model.UserEntity;
 import com.sofftektp.trabajofinal.auth.service.JwtUtils;
 import com.sofftektp.trabajofinal.auth.service.UserDetailsCustomService;
@@ -16,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -44,18 +46,18 @@ public class UserAuthController {
         UserDetails userDetails;
         try {
 
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            authReq.getUsername(),
-                            authReq.getPassword()
-                    )
-            );
+            Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authReq.getUsername(), authReq.getPassword()));
             userDetails = (UserDetails) auth.getPrincipal();
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);
         }
         final String jwt = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/update/role/{id}")
+    public ResponseEntity<String> addRoleToUser(@PathVariable Long id, @RequestBody @Valid RoleForm role, HttpServletRequest request) {
+        return ResponseEntity.ok(userDetailsService.updateUserRol(id, role.getName(), request));
     }
 
 }
