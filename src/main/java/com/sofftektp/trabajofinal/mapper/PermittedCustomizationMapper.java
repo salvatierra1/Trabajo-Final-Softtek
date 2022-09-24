@@ -15,11 +15,12 @@ public class PermittedCustomizationMapper {
 
     @Autowired
     private PermittedCustomizationRepository permittedCustomizationRepository;
+
+    @Autowired
+    private CustomizationSellerMapper customizationSellerMapper;
     public PermittedCustomization dtoToEntity(PermittedCustomizationDTO permittedCustomizationDTO) {
         PermittedCustomization permittedCustomization = new PermittedCustomization();
-        permittedCustomization.setName(permittedCustomizationDTO.getName());
         permittedCustomization.setType(permittedCustomizationDTO.getType());
-        permittedCustomization.setPrice(permittedCustomizationDTO.getPrice());
         return permittedCustomization;
 
     }
@@ -27,13 +28,14 @@ public class PermittedCustomizationMapper {
     public PermittedCustomizationDTO entityToDto(PermittedCustomization customizationSaved) {
         PermittedCustomizationDTO permittedCustomizationDTO = new PermittedCustomizationDTO();
         permittedCustomizationDTO.setId(customizationSaved.getId());
-        permittedCustomizationDTO.setName(customizationSaved.getName());
         permittedCustomizationDTO.setType(customizationSaved.getType());
-        permittedCustomizationDTO.setPrice(customizationSaved.getPrice());
         return permittedCustomizationDTO;
     }
 
     public Collection<PermittedCustomizationDTO> customizationDTOCollection(Collection<PermittedCustomization> permittedCustomizationCollection) {
+        if(permittedCustomizationCollection==null){
+            return null;
+        }
         return permittedCustomizationCollection.stream().map(project -> entityToDto(project)).collect(Collectors.toList());
     }
 
@@ -42,9 +44,7 @@ public class PermittedCustomizationMapper {
             throw new NotFoundException("No existe el id: " + id);
         }
         PermittedCustomization permittedCustomization = permittedCustomizationRepository.findById(id).get();
-        permittedCustomization.setName(permittedCustomizationDTO.getName());
         permittedCustomization.setType(permittedCustomizationDTO.getType());
-        permittedCustomization.setPrice(permittedCustomizationDTO.getPrice());
         return permittedCustomization;
     }
 }

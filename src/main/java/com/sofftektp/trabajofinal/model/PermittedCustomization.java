@@ -27,14 +27,8 @@ public class PermittedCustomization {
     @Column(name = "deleted")
     private boolean deleted = Boolean.FALSE;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "type")
     private String type;
-
-    @Column(name = "price")
-    private Double price;
 
     @CreationTimestamp
     @Column(name = "creation_date",updatable = false)

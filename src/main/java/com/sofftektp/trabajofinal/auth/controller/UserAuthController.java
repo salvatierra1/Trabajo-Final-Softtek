@@ -55,9 +55,21 @@ public class UserAuthController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
+    //=== Delete ===
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable @Valid Long id) {
+        userDetailsService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
     @PostMapping("/update/role/{id}")
     public ResponseEntity<String> addRoleToUser(@PathVariable Long id, @RequestBody @Valid RoleForm role, HttpServletRequest request) {
         return ResponseEntity.ok(userDetailsService.updateUserRol(id, role.getName(), request));
     }
 
+    @GetMapping("/user")
+    public String getUser(Authentication authentication){
+        String name = authentication.getName();
+
+        return name;
+    }
 }

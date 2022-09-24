@@ -5,6 +5,7 @@ import com.sofftektp.trabajofinal.service.ProductBasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,9 +18,9 @@ public class ProductBasicController {
     private ProductBasicService productBasicService;
 
     //=== Post ===
-    @PostMapping("/{id}")
-    public ResponseEntity<ProductBasicDTO> saveProductBasic(@Valid @PathVariable Long id, @RequestBody @Valid ProductBasicDTO productBasicDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(productBasicService.saveProductBasic(id, productBasicDTO));
+    @PostMapping()
+    public ResponseEntity<ProductBasicDTO> saveProductBasic(Authentication authentication, @RequestBody @Valid ProductBasicDTO productBasicDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(productBasicService.saveProductBasic(authentication, productBasicDTO));
     }
 
     //=== Get ===

@@ -1,11 +1,12 @@
 package com.sofftektp.trabajofinal.service;
 
 import com.sofftektp.trabajofinal.dto.ProductBasicDTO;
+import org.springframework.security.core.Authentication;
 
 public interface ProductBasicService {
     ProductBasicDTO getByIdProductBasic(Long id);
 
-    ProductBasicDTO saveProductBasic(Long id, ProductBasicDTO productBasicDTO);
+    ProductBasicDTO saveProductBasic(Authentication authentication, ProductBasicDTO productBasicDTO);
 
     ProductBasicDTO addAreaToProduct(Long id, Long idArea);
 

@@ -36,7 +36,7 @@ public class ProductBasicMapper {
         dto.setDescription(productBasic.getDescription());
         dto.setProductionTime(productBasic.getProductionTime());
         dto.setManager((managerMapper.managerEntity2Dto(productBasic.getManager())));
-        dto.setAreas(areaEnabledMapper.areaEnabledDTOCollection(productBasic.getAreasEnabled()));
+        dto.setAreasPermitted(areaEnabledMapper.areaEnabledDTOCollection(productBasic.getAreasEnabled()));
         return dto;
     }
 
@@ -51,4 +51,11 @@ public class ProductBasicMapper {
         return productBasic;
     }
 
+    public ProductBasicDTO entityToDtoBasic(ProductBasic productBasic) {
+        ProductBasicDTO dto = new ProductBasicDTO();
+        dto.setName(productBasic.getName());
+        dto.setDescription(productBasic.getDescription());
+        dto.setProductionTime(productBasic.getProductionTime());
+        return dto;
+    }
 }

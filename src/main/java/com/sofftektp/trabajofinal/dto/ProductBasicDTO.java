@@ -26,6 +26,6 @@ public class ProductBasicDTO {
 
     private ManagerDTO manager;
 
-    private Collection<AreaEnabledDTO> areas;
+    private Collection<AreaEnabledDTO> areasPermitted;
 
 }

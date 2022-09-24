@@ -8,7 +8,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.Collection;
+
 
 @Entity
 @Data
@@ -29,8 +29,5 @@ public class Seller {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity userEntity;
-
-    @OneToMany
-    private Collection<ProductSeller> productSellers;
 
 }

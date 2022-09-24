@@ -69,8 +69,8 @@ public class AreaEnabledServiceImpl implements AreaEnabledService {
         }
         AreaEnabled  areaEnabled = areaEnabledRepository.findById(id).get();
         PermittedCustomization permittedCustomization = permittedCustomizationRepository.findById(idCustomization).get();
-        if(areaEnabled.getPermittedCustomizationCollection().stream().anyMatch(a-> a.getName().equals(permittedCustomization.getName()))){
-            throw new BadRequestException("El producto base ya cuenta con area: " + permittedCustomization.getName());
+        if(areaEnabled.getPermittedCustomizationCollection().stream().anyMatch(a-> a.getType().equals(permittedCustomization.getType()))){
+            throw new BadRequestException("El producto base ya cuenta con area: " + permittedCustomization.getType());
         }
         areaEnabled.addCustomizationToArea(permittedCustomization);
         areaEnabledRepository.save(areaEnabled);

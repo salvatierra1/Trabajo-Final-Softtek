@@ -29,7 +29,7 @@ public class AreaEnabledMapper {
         AreaEnabledDTO areaEnable = new AreaEnabledDTO();
         areaEnable.setId(areaEnabledSaved.getId());
         areaEnable.setName(areaEnabledSaved.getName());
-        areaEnable.setPermittedCustomization(permittedCustomizationMapper.customizationDTOCollection(areaEnabledSaved.getPermittedCustomizationCollection()));
+        areaEnable.setPermittedCustomizations(permittedCustomizationMapper.customizationDTOCollection(areaEnabledSaved.getPermittedCustomizationCollection()));
         return areaEnable;
     }
 

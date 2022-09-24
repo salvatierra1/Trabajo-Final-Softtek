@@ -9,7 +9,6 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -50,11 +49,13 @@ public class AreaEnabled {
     )
     private Collection<PermittedCustomization> permittedCustomizationCollection;
 
+
     public AreaEnabled() {
-        this.permittedCustomizationCollection = new ArrayList<>();
+
     }
 
     public void addCustomizationToArea(PermittedCustomization permittedCustomization) {
         permittedCustomizationCollection.add(permittedCustomization);
     }
+
 }

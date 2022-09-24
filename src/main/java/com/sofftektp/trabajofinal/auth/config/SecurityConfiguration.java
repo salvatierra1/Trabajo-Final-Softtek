@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.sql.DataSource;
+
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @EnableWebSecurity
@@ -55,5 +57,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
+    @Autowired
+    private DataSource getDataSource;
+    /*protected void recuperarUser(AuthenticationManagerBuilder authenticationManager) throws Exception {
+        authenticationManager.jdbcAuthentication().dataSource(getDataSource)
+                .usersByUsernameQuery("select username, password, from user_entity where username ?")
+                .authoritiesByUsernameQuery("select u.usernane, username.name from user_entity");
+    }*/
 
 }
